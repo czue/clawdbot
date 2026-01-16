@@ -1,5 +1,10 @@
 FROM node:22-bookworm
 
+RUN apt-get update && apt-get install -y socat && rm -rf /var/lib/apt/lists/*
+
+RUN curl -L https://github.com/steipete/wacli/releases/download/v0.1.1/wacli-macos-universal.tar.gz \
+  | tar -xz -C /usr/local/bin && chmod +x /usr/local/bin/wacli
+
 # Install Bun (required for build scripts)
 RUN curl -fsSL https://bun.sh/install | bash
 ENV PATH="/root/.bun/bin:${PATH}"
