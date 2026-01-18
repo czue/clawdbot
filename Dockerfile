@@ -1,5 +1,8 @@
 FROM node:22-bookworm
 
+# Install uv (Python package manager)
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
 RUN apt-get update && apt-get install -y socat && rm -rf /var/lib/apt/lists/*
 
 # Install GitHub CLI
